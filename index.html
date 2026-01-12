@@ -12,11 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-    <!-- React and ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- React and ReactDOM (Updated to Cloudflare CDN for better stability) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <!-- Babel for JSX transpilation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         // Set theme on initial load to prevent FOUC (Flash of Unstyled Content)
@@ -200,6 +202,39 @@
         }
         .nested-accordion-content-inner {
             padding: 1rem;
+        }
+
+        /* Brand Button Styles */
+        .btn-brand-primary {
+            background-color: var(--accent-green);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-brand-primary:hover {
+            background-color: #7a9632;
+            transform: translateY(-2px);
+        }
+        
+        .btn-brand-navy {
+            background-color: var(--accent-navy);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-brand-navy:hover {
+            background-color: #152030;
+            transform: translateY(-2px);
+        }
+        
+        /* New Gradient Action Button Style */
+        .btn-action-gradient {
+            background: linear-gradient(to right, var(--accent-green), var(--accent-navy));
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-action-gradient:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
     </style>
@@ -456,6 +491,52 @@
                         <h3 className="page-title text-2xl sm:text-3xl font-bold mb-4 text-center">أهلاً بك في كورس Smarter With AI - الدفعة الثالثة!</h3>
                         <p className="text-center text-gray-700 dark:text-gray-700 mb-8">يسعدنا انضمامك إلينا في هذه الرحلة الشيقة لاستكشاف عالم الذكاء الاصطناعي وكيفية الاستفادة منه في حياتك اليومية والمهنية.</p>
                         
+                        {/* New Quick Links Section with Branded Buttons */}
+                        <div className="mb-8 bg-gray-50 dark:bg-gray-100 p-4 rounded-xl border border-gray-200">
+                             <h4 className="section-header text-xl font-bold mb-4 flex items-center justify-center gap-2">
+                                <Icon name="link" />
+                                <span>روابط الوصول السريع</span>
+                             </h4>
+                             <div className="flex flex-col gap-3">
+                                {/* Main Group Button - Green */}
+                                <a href="https://t.me/+17hgx4yBQkZkNTFk" target="_blank" className="btn-brand-primary w-full py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-bold text-lg shadow-md">
+                                    <Icon name="users" className="w-6 h-6" />
+                                    <span>جروب الكورس (المناقشة العامة)</span>
+                                </a>
+
+                                {/* Secondary Buttons Grid - Navy */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <a href="https://t.me/c/3692158422/6" target="_blank" className="btn-brand-navy py-3 px-2 rounded-lg flex items-center justify-center gap-2 font-semibold text-sm sm:text-base shadow-sm">
+                                        <Icon name="alert-circle" className="w-5 h-5" />
+                                        <span>تعليمات هامة</span>
+                                    </a>
+                                     <a href="https://t.me/c/3692158422/1" target="_blank" className="btn-brand-navy py-3 px-2 rounded-lg flex items-center justify-center gap-2 font-semibold text-sm sm:text-base shadow-sm">
+                                        <Icon name="help-circle" className="w-5 h-5" />
+                                        <span>الأسئلة والنقاشات</span>
+                                    </a>
+                                </div>
+                                
+                                <div className="grid grid-cols-3 gap-2">
+                                    <a href="https://t.me/c/3692158422/5" target="_blank" className="btn-brand-navy py-2 px-1 rounded-lg flex flex-col items-center justify-center gap-1 text-xs sm:text-sm shadow-sm hover:opacity-90">
+                                        <Icon name="book-open" className="w-5 h-5" />
+                                        <span>المحاضرات</span>
+                                    </a>
+                                    <a href="https://t.me/c/3692158422/2" target="_blank" className="btn-brand-navy py-2 px-1 rounded-lg flex flex-col items-center justify-center gap-1 text-xs sm:text-sm shadow-sm hover:opacity-90">
+                                        <Icon name="clipboard-list" className="w-5 h-5" />
+                                        <span>التاسكات</span>
+                                    </a>
+                                    <a href="https://t.me/c/3692158422/9" target="_blank" className="btn-brand-navy py-2 px-1 rounded-lg flex flex-col items-center justify-center gap-1 text-xs sm:text-sm shadow-sm hover:opacity-90">
+                                        <Icon name="gift" className="w-5 h-5" />
+                                        <span>البونص</span>
+                                    </a>
+                                </div>
+                                
+                                <p className="text-sm text-gray-500 mt-2 text-center font-bold">
+                                    📌 كل قناة فيها رسالة مُثبتة بالمحتوى الكامل، وبتتحدّث باستمرار.
+                                </p>
+                             </div>
+                        </div>
+
                         <div className="video-container shadow-lg mb-8">
                             <iframe src="https://www.youtube.com/embed/1TWllndZuFI?si=EWBxDPpfB4UEDVIN" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen title="فيديو تعريفي بنظام الكورس"></iframe>
                         </div>
@@ -474,7 +555,7 @@
                            <div className="bg-white dark:bg-white p-5 rounded-xl shadow-lg transition-all hover:shadow-xl border-2 border-[--accent-green]">
                                 <h4 className="section-header text-xl font-bold mb-4 flex items-center gap-2"><Icon name="layout-grid" /><span>أقسام التطبيق</span></h4>
                                 <ul className="space-y-3 text-gray-700">
-                                     <li className="flex items-start gap-3"><Icon name="arrow-left-circle" className="w-5 h-5 text-[--accent-green] mt-1 flex-shrink-0" /><span><span className="font-bold">الرئيسية:</span> نظرة عامة على الكورس.</span></li>
+                                     <li className="flex items-start gap-3"><Icon name="arrow-left-circle" className="w-5 h-5 text-[--accent-green] mt-1 flex-shrink-0" /><span><span className="font-bold">الرئيسية:</span> نظرة عامة على الكورس والروابط الهامة.</span></li>
                                      <li className="flex items-start gap-3"><Icon name="arrow-left-circle" className="w-5 h-5 text-[--accent-green] mt-1 flex-shrink-0" /><span><span className="font-bold">المحاضرات:</span> جميع محاضرات وأدلة الكورس.</span></li>
                                      <li className="flex items-start gap-3"><Icon name="arrow-left-circle" className="w-5 h-5 text-[--accent-green] mt-1 flex-shrink-0" /><span><span className="font-bold">التاسكات:</span> المهام العملية الأسبوعية.</span></li>
                                      <li className="flex items-start gap-3"><Icon name="arrow-left-circle" className="w-5 h-5 text-[--accent-green] mt-1 flex-shrink-0" /><span><span className="font-bold">البونص:</span> بنك أدوات ومصادر إضافية.</span></li>
@@ -571,6 +652,7 @@
         const LecturesTab = ({ setModalMessage }) => {
             const CURRENT_WEEK_INDEX = -1; // All weeks locked initially
             const [openWeek, setOpenWeek] = useState(lecturesData[0]?.title || null);
+            const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
                 try {
                     const saved = localStorage.getItem(LECTURE_COMPLETION_KEY);
@@ -590,7 +672,7 @@
                     const timeoutId = setTimeout(() => window.lucide.createIcons(), 0);
                     return () => clearTimeout(timeoutId);
                 }
-            }, [openWeek, completedLectures]);
+            }, [openWeek, completedLectures, isAvailabilityOpen]);
 
             const handleToggleWeek = (title) => {
                 setOpenWeek(prev => (prev === title ? null : title));
@@ -619,11 +701,12 @@
             const totalCompletedLectures = completed;
             const overallProgress = totalLecturesCount > 0 ? (totalCompletedLectures / totalLecturesCount) * 100 : 0;
 
-            const reminderText = "تذكير بنظامنا الأسبوعي: المحاضرات المسجلة متاحة لك على مدار الأسبوع. وفي نهاية كل أسبوع، نلتقي في سيشن لايف للإجابة على استفساراتك، مناقشة تطبيقات جديدة، وتعميق فهمك للمحتوى. جهّز أسئلتك!";
+            const reminderText = "تذكير: نلتقي أسبوعيًا في بث مباشر (Live) يوم الجمعة الساعة 8 مساءً للمناقشة والتطبيق. لا تقلق إذا فاتك، فالتسجيل سيكون متاحًا يوم السبت بإذن الله.";
 
             return (
                 <div className="space-y-6">
                     <Reminder>{reminderText}</Reminder>
+                    
                      <GlobalProgressBar 
                         title="إجمالي تقدم المحاضرات"
                         progress={overallProgress}
@@ -631,6 +714,19 @@
                         totalCount={totalLecturesCount}
                         icon="book-open-check"
                     />
+
+                    {/* Channel Button - New Gradient Style */}
+                    <div className="text-center">
+                         <a 
+                            href="https://t.me/c/3692158422/5" 
+                            target="_blank"
+                            className="btn-action-gradient hover:opacity-90 font-medium rounded-lg text-lg px-8 py-3 text-center transition-transform transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-md"
+                        >
+                            <Icon name="book-open" className="w-5 h-5"/>
+                            <span>الذهاب إلى قناة المحاضرات (تليجرام)</span>
+                        </a>
+                    </div>
+
                     <div className="space-y-4">
                         {lecturesData.map((week, index) => {
                             const isLocked = index > CURRENT_WEEK_INDEX;
@@ -721,6 +817,23 @@
                             );
                         })}
                     </div>
+
+                    {/* Lecture Availability Dropdown at the bottom */}
+                    <Accordion
+                        title="⏳ مدة إتاحة المحاضرات – مهم جدًا"
+                        isOpen={isAvailabilityOpen}
+                        onToggle={() => setAvailabilityOpen(!isAvailabilityOpen)}
+                    >
+                        <div className="text-gray-700 dark:text-gray-700 space-y-2 leading-relaxed">
+                            <p>المحاضرات متاحة ليكم كلكم خلال مدة الكورس + 3 شهور بعده.</p>
+                            <p className="font-bold text-red-500">لكن…</p>
+                            <p>
+                                اللي يخلّص <span className="font-bold text-[--accent-navy]">كل المحاضرات</span> + <span className="font-bold text-[--accent-navy]">كل التاسكات</span> + <span className="font-bold text-[--accent-navy]">مشروع التخرج</span>
+                                <br />
+                                بنضمه لقناة خاصة فيها كل محاضرات الكورس مدي الحياة. 🎓
+                            </p>
+                        </div>
+                    </Accordion>
                 </div>
             );
         };
@@ -871,15 +984,19 @@
                         totalCount={totalTasksCount}
                         icon="clipboard-check"
                     />
+                    
+                    {/* Active Channel Button - New Gradient Style */}
                     <div className="text-center">
                          <a 
-                            href="#" 
-                            className="text-white bg-gradient-to-r from-[--accent-green] to-[--accent-navy] hover:opacity-90 font-medium rounded-lg text-lg px-8 py-3 text-center transition-transform transform hover:scale-105 inline-flex items-center justify-center gap-2 opacity-50 cursor-not-allowed pointer-events-none"
+                            href="https://t.me/c/3692158422/2" 
+                            target="_blank" 
+                            className="btn-action-gradient hover:opacity-90 font-medium rounded-lg text-lg px-8 py-3 text-center transition-transform transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-md"
                         >
                             <Icon name="send" className="w-5 h-5"/>
-                            <span>رابط جروب التليجرام (قريباً)</span>
+                            <span>رابط قناة التاسكات (تليجرام)</span>
                         </a>
                     </div>
+
                     <div className="space-y-4">
                         {tasksData.map((item, index) => (
                             index > CURRENT_WEEK_INDEX ? (
@@ -1062,6 +1179,19 @@
             return (
                 <div className="space-y-8">
                     <Reminder>{reminderText}</Reminder>
+                    
+                    {/* Channel Button - New Gradient Style */}
+                    <div className="text-center">
+                         <a 
+                            href="https://t.me/c/3692158422/9" 
+                            target="_blank"
+                            className="btn-action-gradient hover:opacity-90 font-medium rounded-lg text-lg px-8 py-3 text-center transition-transform transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-md"
+                        >
+                            <Icon name="gift" className="w-5 h-5"/>
+                            <span>الذهاب إلى قناة البونص (تليجرام)</span>
+                        </a>
+                    </div>
+
                     <div className="space-y-4">
                         <Accordion 
                             title="ترشيحاتي الخاصة" 
@@ -1254,16 +1384,16 @@
                             >
                                 <div className="space-y-3 pt-2">
                                     <a href="https://drive.google.com/file/d/1qeKaJ8vr8gmBNCR-QLTmLgqXJPcKhFcs/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-[--accent-green] flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50">
-                                        <Icon name="youtube" className="w-5 h-5 text-red-600" />
-                                        <span>يوتيوب</span>
+                                            <Icon name="youtube" className="w-5 h-5 text-red-600" />
+                                            <span>يوتيوب</span>
                                     </a>
                                     <a href="https://drive.google.com/file/d/1dtRwvwG4B3SqlFgEBxD1zLM8iRWlE8vX/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-[--accent-green] flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50">
-                                        <Icon name="facebook" className="w-5 h-5 text-blue-600" />
-                                        <span>فيسبوك</span>
+                                            <Icon name="facebook" className="w-5 h-5 text-blue-600" />
+                                            <span>فيسبوك</span>
                                     </a>
                                     <a href="https://drive.google.com/file/d/1lOOh_34fP9g8lsiYQtS8WGm1j59evVil/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-[--accent-green] flex items-center gap-2 p-2 rounded-lg hover:bg-gray-50">
-                                        <Icon name="twitter" className="w-5 h-5 text-blue-400" />
-                                        <span>تويتر (X)</span>
+                                            <Icon name="twitter" className="w-5 h-5 text-blue-400" />
+                                            <span>تويتر (X)</span>
                                     </a>
                                 </div>
                             </NestedAccordion>
@@ -1435,8 +1565,10 @@
 
         // Rendering
         const rootElement = document.getElementById('root');
-        const root = ReactDOM.createRoot(rootElement);
-        root.render(<App />);
+        if (rootElement) {
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(<App />);
+        }
     </script>
     <script>
         // Welcome Screen Logic
