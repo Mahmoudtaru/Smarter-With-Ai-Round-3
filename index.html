@@ -603,8 +603,12 @@
         const lecturesData = [
             { 
                 title: "الأسبوع 1: مقدمة عن الذكاء الاصطناعي", 
-                lectures: [],
-                guides: []
+                lectures: [
+                    { title: "محاضرة الأسبوع الأول", url: "https://t.me/c/3692158422/5/68" }
+                ],
+                guides: [
+                    { title: "مرفقات الاسبوع الأول", url: "https://drive.google.com/drive/folders/1WOWEwC2iQgb69Vy3_3rN_gZ6fq5YB1jH?usp=sharing" }
+                ]
             },
             { 
                 title: "الأسبوع 2: التعلم والبحث", 
@@ -650,7 +654,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = -1; // All weeks locked initially
+            const CURRENT_WEEK_INDEX = 0; // Week 1 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[0]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -840,7 +844,14 @@
 
         // TasksTab Component
         const tasksData = [
-            { title: "تاسكات الأسبوع 1", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 1", 
+                deadline: "24 يناير", 
+                tasks: [
+                    "محاولة استكشاف Chatgpt و Gemini",
+                    "مشاركة محادثة واحدة (علي الأقل) مع اي حد فيهم"
+                ] 
+            },
             { title: "تاسكات الأسبوع 2", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 3", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 4", deadline: "قريباً", tasks: [] },
@@ -931,7 +942,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = -1; // All tasks locked initially
+            const CURRENT_WEEK_INDEX = 0; // Week 1 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
@@ -1355,7 +1366,7 @@
                         >
                             <ul className="space-y-2 mt-4 text-gray-700">
                                 <li>
-                                    <a href="https://t.me/c/3281058204/6/123" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
+                                    <a href="https://t.me/c/3692158422/9/29" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
                                         <Icon name="play-circle" className="w-5 h-5 text-[--accent-green] flex-shrink-0" />
                                         <span className="flex-grow">المساعدون الشخصيون (المحاضرة)</span>
                                         <Icon name="external-link" className="w-5 h-5 text-gray-400" />
