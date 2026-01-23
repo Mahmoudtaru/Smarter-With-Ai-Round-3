@@ -731,6 +731,18 @@
                         </a>
                     </div>
 
+                    {/* New Notebook & Assistant Buttons */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 mb-6">
+                        <a href="https://notebooklm.google.com/notebook/7b7f75b1-77f6-4363-ada6-84c730d6bfc7" target="_blank" className="btn-brand-navy py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition-all">
+                            <Icon name="book" className="w-5 h-5 text-[--accent-green]" />
+                            <span>Smarter Notebook (نوت بوك الكورس)</span>
+                        </a>
+                        <a href="https://gemini.google.com/gem/1iO5UkN9OqLiCY1TaRgP01ZN0qRbV4n0C?usp=sharing" target="_blank" className="btn-brand-navy py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition-all">
+                            <Icon name="bot" className="w-5 h-5 text-[--accent-green]" />
+                            <span>Smarter Assistant (المساعد الخاص)</span>
+                        </a>
+                    </div>
+
                     <div className="space-y-4">
                         {lecturesData.map((week, index) => {
                             const isLocked = index > CURRENT_WEEK_INDEX;
@@ -1008,6 +1020,18 @@
                         </a>
                     </div>
 
+                    {/* Smarter Gifts Button */}
+                    <div className="text-center mt-4">
+                         <a 
+                            href="https://mahmoudtaru.github.io/Smarter-Gifts/" 
+                            target="_blank" 
+                            className="btn-brand-primary hover:opacity-90 font-medium rounded-lg text-lg px-8 py-3 text-center transition-transform transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-md"
+                        >
+                            <Icon name="gift" className="w-5 h-5"/>
+                            <span>موقع المساعدين الشخصيين (Smarter Gifts)</span>
+                        </a>
+                    </div>
+
                     <div className="space-y-4">
                         {tasksData.map((item, index) => (
                             index > CURRENT_WEEK_INDEX ? (
@@ -1062,6 +1086,7 @@
                     { name: "Ideogram", url: "https://ideogram.ai/" }, 
                     { name: "Gemini", url: "https://gemini.google.com/" },
                     { name: "Copilot", url: "https://copilot.microsoft.com/" },
+                    { name: "Flow", url: "https://labs.google/fx/tools/flow" }
                 ] 
             },
             { 
@@ -1104,7 +1129,8 @@
                 tools: [
                     { name: "NotebookLM", url: "https://notebooklm.google.com/" }, 
                     { name: "ChatGPT", url: "https://chat.openai.com/" }, 
-                    { name: "Perplexity", url: "https://www.perplexity.ai/" }
+                    { name: "Perplexity", url: "https://www.perplexity.ai/" },
+                    { name: "Gemini", url: "https://gemini.google.com/app" }
                 ] 
             },
             { 
@@ -1113,7 +1139,9 @@
                 tools: [
                     { name: "Gamma", url: "https://gamma.app/" }, 
                     { name: "Tome", url: "https://tome.app/" }, 
-                    { name: "Beautiful.ai", url: "https://www.beautiful.ai/" }
+                    { name: "Beautiful.ai", url: "https://www.beautiful.ai/" },
+                    { name: "z.ai", url: "https://chat.z.ai/" },
+                    { name: "NotebookLM", url: "https://notebooklm.google.com/" }
                 ] 
             },
             { 
@@ -1121,10 +1149,21 @@
                 icon: "bot", 
                 tools: [
                     { name: "Genspark", url: "https://www.genspark.com/" }, 
-                    { name: "Skywork", url: "https://skywork.ai/" }, 
+                    { name: "Skywork", url: "https://skywork.ai/home?invite_code=0091508aac59845e2326904b700d8115" }, 
                     { name: "Manus", url: "https://manus.im/invitation/G2VVLOLCC7RPZFM" }, 
                     { name: "z.ai", url: "https://chat.z.ai/" },
                     { name: "Kimi", url: "https://www.kimi.com/" }
+                ] 
+            },
+            { 
+                title: "أدوات أخرى مفيدة", 
+                icon: "wrench", 
+                tools: [
+                    { name: "Youtube to Notebooklm", url: "https://chromewebstore.google.com/detail/kobncfkmjelbefaoohoblamnbackjggk?utm_source=item-share-cb" },
+                    { name: "Compress PDF (iLovePDF)", url: "https://www.ilovepdf.com/compress_pdf" },
+                    { name: "PDF to PPT (Canva)", url: "https://www.canva.com/features/pdf-to-ppt-converter/" },
+                    { name: "Voice Enhancer (Auphonic)", url: "https://auphonic.com/accounts/login/" },
+                    { name: "إزالة شعار Gemini من الصور", url: "https://banana.ovo.re/" }
                 ] 
             }
         ];
