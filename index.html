@@ -612,8 +612,12 @@
             },
             { 
                 title: "الأسبوع 2: التعلم والبحث", 
-                lectures: [],
-                guides: []
+                lectures: [
+                    { title: "محاضرة الأسبوع الثاني", url: "https://t.me/c/3692158422/5/103" }
+                ],
+                guides: [
+                    { title: "مرفقات الاسبوع الثاني", url: "https://drive.google.com/drive/folders/1J3jjNGn0ZWVPrd6Zpsp9eEY_Qsb1dHn_?usp=sharing" }
+                ]
             },
             { 
                 title: "الأسبوع 3: إنشاء صور احترافية", 
@@ -654,8 +658,8 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 0; // Week 1 unlocked
-            const [openWeek, setOpenWeek] = useState(lecturesData[0]?.title || null);
+            const CURRENT_WEEK_INDEX = 1; // Week 2 unlocked
+            const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
                 try {
@@ -864,7 +868,15 @@
                     "مشاركة محادثة واحدة (علي الأقل) مع اي حد فيهم"
                 ] 
             },
-            { title: "تاسكات الأسبوع 2", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 2", 
+                deadline: "31 يناير 2026", 
+                tasks: [
+                    "عمل بحث شامل عن موضوع انت مهتم بيه",
+                    "عمل نوت بوك متكاملة لحاجة تخص شغلك او دراستك ومشاركتها معانا",
+                    "اختياري: انشاء تاسك دورية لحاجة انت مهتم بيها"
+                ] 
+            },
             { title: "تاسكات الأسبوع 3", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 4", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 5", deadline: "قريباً", tasks: [] },
@@ -954,7 +966,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 0; // Week 1 unlocked
+            const CURRENT_WEEK_INDEX = 1; // Week 2 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
