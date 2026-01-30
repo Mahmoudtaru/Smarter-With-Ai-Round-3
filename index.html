@@ -621,8 +621,12 @@
             },
             { 
                 title: "الأسبوع 3: إنشاء صور احترافية", 
-                lectures: [], 
-                guides: []
+                lectures: [
+                    { title: "محاضرة الأسبوع الثالث", url: "https://t.me/c/3692158422/5/163" }
+                ], 
+                guides: [
+                    { title: "مرفقات الاسبوع الثالث", url: "https://drive.google.com/drive/folders/1EJ6RXo1Wj6KCsNCQ1BqPhzPXvBWYU2cM?usp=sharing" }
+                ]
             },
             { 
                 title: "الأسبوع 4: إنشاء فيديوهات احترافية", 
@@ -658,7 +662,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 1; // Week 2 unlocked
+            const CURRENT_WEEK_INDEX = 2; // Week 3 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -877,7 +881,14 @@
                     "اختياري: انشاء تاسك دورية لحاجة انت مهتم بيها"
                 ] 
             },
-            { title: "تاسكات الأسبوع 3", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 3", 
+                deadline: "7 فبراير 2026", 
+                tasks: [
+                    "عمل بريزنتيشن احترافي عن موضوع مهتم بيه",
+                    "عمل صور بمساعدة الذكاء الاصطناعي (انفوجرافيك - تصميم سوشيال - لوجو - صور شخصية - اي حاجة زي ما تحب)"
+                ] 
+            },
             { title: "تاسكات الأسبوع 4", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 5", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 6", deadline: "قريباً", tasks: [] },
@@ -966,7 +977,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 1; // Week 2 unlocked
+            const CURRENT_WEEK_INDEX = 2; // Week 3 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
