@@ -639,8 +639,12 @@
             },
             { 
                 title: "الأسبوع 5: إنشاء محتوى صوتي", 
-                lectures: [], 
-                guides: []
+                lectures: [
+                    { title: "محاضرة الأسبوع الخامس", url: "https://t.me/c/3692158422/5/442" }
+                ], 
+                guides: [
+                    { title: "مرفقات الأسبوع الخامس", url: "https://drive.google.com/drive/folders/1ND5RS59Diu-k9Dbqr8InGqgkCZffDUJY?usp=sharing" }
+                ]
             },
             { 
                 title: "الأسبوع 6: تصميم المواقع والتطبيقات", 
@@ -666,7 +670,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 3; // Week 4 unlocked
+            const CURRENT_WEEK_INDEX = 4; // Week 5 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -900,7 +904,14 @@
                     "عمل فيديوهين بطرق عمل مختلفة زي ما تحبوا (سواء من نص أو صورة أو فيديو)"
                 ] 
             },
-            { title: "تاسكات الأسبوع 5", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 5", 
+                deadline: "21 فبراير 2026", 
+                tasks: [
+                    "عمل صوت (فويس اوفر أو محادثة) احترافي عن موضوع مهتم بيه",
+                    "تصميم شخصية افتراضية وتصميم صوت ليها ثم مشاركة فيديو مزامنة بصوت الشخصية"
+                ] 
+            },
             { title: "تاسكات الأسبوع 6", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 7", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 8", deadline: "قريباً", tasks: [] },
@@ -987,7 +998,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 3; // Week 4 unlocked
+            const CURRENT_WEEK_INDEX = 4; // Week 5 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
@@ -1135,6 +1146,7 @@
                 title: "صوت", 
                 icon: "audio-lines", 
                 tools: [
+                    { name: "Fish Audio", url: "https://fish.audio/app/discovery/" },
                     { name: "ElevenLabs", url: "https://elevenlabs.io/" }, 
                     { name: "Google AI Studio", url: "https://aistudio.google.com/" }, 
                     { name: "Lahajati", url: "https://lahajati.ai/" }, 
@@ -1147,6 +1159,7 @@
                 title: "فيديو", 
                 icon: "video", 
                 tools: [
+                    { name: "GeminiGen AI", url: "https://geminigen.ai/" },
                     { name: "Grok", url: "https://grok.com/" },
                     { name: "Meta AI", url: "https://www.meta.ai/" },
                     { name: "Wan", url: "https://create.wan.video/explore" },
@@ -1190,9 +1203,12 @@
                 ] 
             },
             {
-                title: "أدوات مساعدة (تحويل وضغط)",
+                title: "أدوات مساعدة (صوت وفيديو)",
                 icon: "settings-2",
                 tools: [
+                    { name: "Audio Cutter (قص صوت)", url: "https://mp3cut.net/" },
+                    { name: "Vocal Remover (عزل صوت)", url: "https://vocalremover.org/" },
+                    { name: "Auphonic (تحسين جودة الصوت)", url: "https://auphonic.com/engine/" },
                     { name: "VLC (تحويل صوت لفيديو - كمبيوتر)", url: "https://www.videolan.org/" },
                     { name: "HandBrake (ضغط فيديو - كمبيوتر)", url: "https://handbrake.fr/" },
                     { name: "FreeConvert (تحويل فيديو لصوت - أونلاين)", url: "https://www.freeconvert.com/convert/video-to-mp3" },
@@ -1200,6 +1216,18 @@
                     { name: "Audio Compressor (ضغط صوت - موبايل)", url: "https://play.google.com/store/apps/details?id=com.btxdev.musiccompressor" },
                     { name: "Video to MP3 (تحويل صوت لفيديو - موبايل 1)", url: "https://play.google.com/store/apps/details?id=mp3converter.videotomp3.ringtonemaker" },
                     { name: "MP3 Video Converter (تحويل صوت لفيديو - موبايل 2)", url: "https://play.google.com/store/apps/details?id=mp3videoconverter.videotomp3.videotomp3converter" }
+                ]
+            },
+            {
+                title: "إضافات NotebookLM",
+                icon: "plug",
+                tools: [
+                    { name: "YouTube to NotebookLM", url: "https://chromewebstore.google.com/detail/youtube-to-notebooklm/kobncfkmjelbefaoohoblamnbackjggk" },
+                    { name: "NotebookLM Web Importer", url: "https://chromewebstore.google.com/detail/notebooklm-web-importer/ijdefdijdmghafocfmmdojfghnpelnfn?hl=en" },
+                    { name: "Bookshelf Folder Manager", url: "https://chromewebstore.google.com/detail/bookshelf-folder-manager/ibjbgddbhlcookmdhehgljaneccjidik" },
+                    { name: "Kortex (All-in-One Tool)", url: "https://kortex-notebooklm.com/" },
+                    { name: "NotebookLM Language Switcher", url: "https://chromewebstore.google.com/detail/notebooklm-language-switc/bkmhaelpdihelhfpfachdmhoogbdhkjj" },
+                    { name: "NotebookLM Ultra Exporter", url: "https://chromewebstore.google.com/detail/notebooklm-ultra-exporter/afchokljnhhggkhedfbmkcmdagjmjchj" }
                 ]
             },
             { 
@@ -1210,7 +1238,8 @@
                     { name: "Compress PDF (iLovePDF)", url: "https://www.ilovepdf.com/compress_pdf" },
                     { name: "PDF to PPT (Canva)", url: "https://www.canva.com/features/pdf-to-ppt-converter/" },
                     { name: "Voice Enhancer (Auphonic)", url: "https://auphonic.com/accounts/login/" },
-                    { name: "إزالة شعار Gemini من الصور", url: "https://banana.ovo.re/" }
+                    { name: "إزالة شعار Gemini من الصور", url: "https://banana.ovo.re/" },
+                    { name: "Magic Eraser (إزالة العلامات المائية)", url: "http://magiceraser.org" }
                 ] 
             }
         ];
