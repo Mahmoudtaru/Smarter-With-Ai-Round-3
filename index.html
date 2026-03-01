@@ -648,8 +648,14 @@
             },
             { 
                 title: "الأسبوع 6: تصميم المواقع والتطبيقات", 
-                lectures: [], 
-                guides: []
+                lectures: [
+                    { title: "لايف الأسبوع السادس", url: "https://t.me/c/3692158422/5/639" },
+                    { title: "محاضرة الأسبوع السادس", url: "https://t.me/c/3692158422/5/645" }
+                ], 
+                guides: [
+                    { title: "مرفقات اللايف", url: "https://drive.google.com/drive/folders/1_WYDF3jMzpS7v2tah5e6oXg_G-IqnGWB?usp=sharing" },
+                    { title: "مرفقات المحاضرة", url: "https://drive.google.com/drive/folders/1b8WyWLX12PHEAnbTHQotNodU9sD-sHku?usp=sharing" }
+                ]
             },
             { 
                 title: "الأسبوع 7: المساعد الشخصي", 
@@ -670,7 +676,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 4; // Week 5 unlocked
+            const CURRENT_WEEK_INDEX = 5; // Week 6 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -912,7 +918,24 @@
                     "تصميم شخصية افتراضية وتصميم صوت ليها ثم مشاركة فيديو مزامنة بصوت الشخصية"
                 ] 
             },
-            { title: "تاسكات الأسبوع 6", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 6", 
+                deadline: "8 مارس 2026", 
+                tasks: [
+                    {
+                        text: "تقدر تعمل أي حاجة من اللي اتشرحت، اختار حاجة من دول:",
+                        subItems: [
+                            "سواء موقع ليك أو للخدمة بتاعتك",
+                            "تطبيق (متابعة عادات مثلا أو مصروفات وهكذا)",
+                            "لعبة مثلا بتحبها أو للطلبة بتوعك يهضموا المحتوي بتاعك",
+                            "ممكن داشبورد حتي لو ببيانات مش حقيقية",
+                            "ممكن موقع لموضوع انت بتتعلمه أو بتشرحه، ارفعله المصدر أو قوله الموضوع",
+                            "ممكن تعمل Simulation (محاكاة) لأي ميكانيزم (طريقة عمل الاجسام المضادة، الفضاء..)"
+                        ]
+                    }
+                ],
+                note: "ضروري: التجربة؛ تجربة أكتر، استفادة ومتعة وتمكن أكتر وأكتر"
+            },
             { title: "تاسكات الأسبوع 7", deadline: "قريباً", tasks: [] },
             { title: "تاسكات الأسبوع 8", deadline: "قريباً", tasks: [] },
             { title: "الأسبوع 9: مشروع التخرج", deadline: "قريباً", tasks: [], isFinal: true },
@@ -922,7 +945,10 @@
 
         const TaskCard = ({ item, completedTasks, onToggleTask }) => {
             const totalTasks = item.tasks.length;
-            const completedCount = item.tasks.filter(task => completedTasks[`${item.title}-${task}`]).length;
+            const completedCount = item.tasks.filter(taskObj => {
+                const taskText = typeof taskObj === 'string' ? taskObj : taskObj.text;
+                return completedTasks[`${item.title}-${taskText}`];
+            }).length;
             const progress = totalTasks > 0 ? (completedCount / totalTasks) * 100 : 0;
             const isHighlighted = progress === 100 || !!item.isFinal;
 
@@ -953,30 +979,49 @@
 
                     {item.tasks.length > 0 ? (
                         <ul className="space-y-4 pt-2">
-                            {item.tasks.map((task, index) => {
-                                const taskKey = `${item.title}-${task}`;
+                            {item.tasks.map((taskObj, index) => {
+                                const isString = typeof taskObj === 'string';
+                                const taskText = isString ? taskObj : taskObj.text;
+                                const taskKey = `${item.title}-${taskText}`;
                                 const isCompleted = !!completedTasks[taskKey];
+                                
                                 return (
-                                    <li key={index} className="flex items-center gap-3">
-                                        <input
-                                            type="checkbox"
-                                            id={`task-${item.title}-${index}`}
-                                            checked={isCompleted}
-                                            onChange={() => onToggleTask(taskKey)}
-                                            className="h-5 w-5 rounded border-gray-300 cursor-pointer"
-                                        />
-                                        <label 
-                                            htmlFor={`task-${item.title}-${index}`}
-                                            className={`flex-grow cursor-pointer ${isCompleted ? 'line-through text-gray-500' : ''} ${task.includes("ضروري") ? 'font-semibold' : ''}`}
-                                        >
-                                           {task}
-                                        </label>
+                                    <li key={index} className="flex flex-col gap-2">
+                                        <div className="flex items-start gap-3">
+                                            <input
+                                                type="checkbox"
+                                                id={`task-${item.title}-${index}`}
+                                                checked={isCompleted}
+                                                onChange={() => onToggleTask(taskKey)}
+                                                className="h-5 w-5 rounded border-gray-300 cursor-pointer mt-1 flex-shrink-0"
+                                            />
+                                            <label 
+                                                htmlFor={`task-${item.title}-${index}`}
+                                                className={`flex-grow cursor-pointer leading-relaxed ${isCompleted ? 'line-through text-gray-500' : ''} ${taskText.includes("ضروري") ? 'font-semibold' : ''}`}
+                                            >
+                                               {taskText}
+                                            </label>
+                                        </div>
+                                        {!isString && taskObj.subItems && (
+                                            <ul className={`list-disc list-inside pr-10 text-gray-600 space-y-2 text-sm sm:text-base ${isCompleted ? 'line-through opacity-70' : ''}`}>
+                                                {taskObj.subItems.map((sub, idx) => (
+                                                    <li key={idx}>{sub}</li>
+                                                ))}
+                                            </ul>
+                                        )}
                                     </li>
                                 )
                             })}
                         </ul>
                     ) : (
                         <p className="text-gray-600 text-center p-4">التاسكات ستكون متاحة قريباً بإذن الله.</p>
+                    )}
+
+                    {item.note && (
+                        <div className="mt-5 p-4 bg-red-50 border-r-4 border-red-500 rounded-lg text-red-700 font-semibold flex items-start gap-3 shadow-sm">
+                            <Icon name="info" className="w-6 h-6 flex-shrink-0" />
+                            <p className="leading-relaxed">{item.note}</p>
+                        </div>
                     )}
                 </div>
             );
@@ -998,7 +1043,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 4; // Week 5 unlocked
+            const CURRENT_WEEK_INDEX = 5; // Week 6 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
@@ -1230,6 +1275,15 @@
                     { name: "NotebookLM Ultra Exporter", url: "https://chromewebstore.google.com/detail/notebooklm-ultra-exporter/afchokljnhhggkhedfbmkcmdagjmjchj" }
                 ]
             },
+            {
+                title: "إضافات متصفح مفيدة",
+                icon: "puzzle",
+                tools: [
+                    { name: "Video Downloader Global - videos & streams", url: "https://chromewebstore.google.com/detail/video-downloader-global-v/olafhgbhkkgkbbonieapkchffalihpic" },
+                    { name: "Awesome Screen Recorder & Screenshot", url: "https://chromewebstore.google.com/detail/awesome-screen-recorder-s/nlipoenfbbikpbjkfpfillcgkoblgpmj" },
+                    { name: "Audio Recorder Online - Capture Screen Audio", url: "https://chromewebstore.google.com/detail/audio-recorder-online-cap/gilmhnfniipoefkgfaoociaehdcmdcgk" }
+                ]
+            },
             { 
                 title: "أدوات أخرى مفيدة", 
                 icon: "wrench", 
@@ -1319,6 +1373,39 @@
                     </div>
 
                     <div className="space-y-4">
+                        <Accordion 
+                            title="أدوات الكورس (Smarter Tools)" 
+                            isOpen={openAccordion === "smarter_tools"} 
+                            onToggle={() => handleToggle("smarter_tools")}
+                        >
+                            <div className="flex flex-col rounded-lg overflow-hidden border">
+                                <RecommendationLink 
+                                    href="https://notebooklm.google.com/notebook/7b7f75b1-77f6-4363-ada6-84c730d6bfc7"
+                                    icon="book"
+                                    title="Smarter Notebook"
+                                    description="نوت بوك الكورس الشامل"
+                                />
+                                <RecommendationLink 
+                                    href="https://gemini.google.com/gem/1iO5UkN9OqLiCY1TaRgP01ZN0qRbV4n0C?usp=sharing"
+                                    icon="bot"
+                                    title="Smarter Assistant"
+                                    description="المساعد الشخصي الخاص بالكورس"
+                                />
+                                <RecommendationLink 
+                                    href="https://t.me/c/3692158422/9/29"
+                                    icon="play-circle"
+                                    title="المساعدون الشخصيون (المحاضرة)"
+                                    description="شرح وتطبيق على المساعدين"
+                                />
+                                <RecommendationLink 
+                                    href="https://mahmoudtaru.github.io/Smarter-Gifts/"
+                                    icon="link"
+                                    title="قائمة المساعدين الشخصيين (Smarter Gifts)"
+                                    description="موقع يضم كافة المساعدين الجاهزين"
+                                />
+                            </div>
+                        </Accordion>
+
                         <Accordion 
                             title="ترشيحاتي الخاصة" 
                             isOpen={openAccordion === "recommendations"} 
@@ -1474,30 +1561,7 @@
 
                         </Accordion>
 
-                         <Accordion 
-                            title="مساعدين شخصيين (GPTs)" 
-                            isOpen={openAccordion === "assistants"} 
-                            onToggle={() => handleToggle("assistants")}
-                        >
-                            <ul className="space-y-2 mt-4 text-gray-700">
-                                <li>
-                                    <a href="https://t.me/c/3692158422/9/29" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
-                                        <Icon name="play-circle" className="w-5 h-5 text-[--accent-green] flex-shrink-0" />
-                                        <span className="flex-grow">المساعدون الشخصيون (المحاضرة)</span>
-                                        <Icon name="external-link" className="w-5 h-5 text-gray-400" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://mahmoudtaru.github.io/Smarter-Gifts/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
-                                        <Icon name="link" className="w-5 h-5 text-[--accent-green] flex-shrink-0" />
-                                        <span className="flex-grow">الرابط بتاعهم (قائمة المساعدين)</span>
-                                        <Icon name="external-link" className="w-5 h-5 text-gray-400" />
-                                    </a>
-                                </li>
-                            </ul>
-                        </Accordion>
-                        
-                         <Accordion 
+                        <Accordion 
                             title="مصادر إضافية للتعلم" 
                             isOpen={openAccordion === "resources"} 
                             onToggle={() => handleToggle("resources")}
@@ -1550,6 +1614,112 @@
                                 </div>
                             </NestedAccordion>
 
+                        </Accordion>
+
+                        <Accordion 
+                            title="تغذية بصرية (Visual Inspiration)" 
+                            isOpen={openAccordion === "visual_inspiration"} 
+                            onToggle={() => handleToggle("visual_inspiration")}
+                        >
+                            <NestedAccordion
+                                title="عامة (General)"
+                                icon="image"
+                                isOpen={openNestedAccordion === "visual_general"}
+                                onToggle={() => handleNestedToggle("visual_general")}
+                            >
+                                <div className="flex flex-col rounded-lg overflow-hidden border">
+                                    <RecommendationLink 
+                                        href="https://www.pinterest.com/"
+                                        icon="image"
+                                        title="Pinterest"
+                                    />
+                                    <RecommendationLink 
+                                        href="https://www.behance.net/"
+                                        icon="image"
+                                        title="Behance"
+                                    />
+                                </div>
+                            </NestedAccordion>
+
+                            <NestedAccordion
+                                title="الصفحات المقصودة (Landing Pages)"
+                                icon="layout-template"
+                                isOpen={openNestedAccordion === "visual_landing"}
+                                onToggle={() => handleNestedToggle("visual_landing")}
+                            >
+                                <div className="flex flex-col rounded-lg overflow-hidden border">
+                                    <RecommendationLink 
+                                        href="https://dribbble.com/search/landing-page"
+                                        icon="layout-template"
+                                        title="Dribbble (Landing Pages)"
+                                    />
+                                    <RecommendationLink 
+                                        href="https://www.landingfolio.com/"
+                                        icon="layout-template"
+                                        title="Landingfolio"
+                                    />
+                                    <RecommendationLink 
+                                        href="https://www.landing.gallery/"
+                                        icon="layout-template"
+                                        title="Landing Gallery"
+                                    />
+                                </div>
+                            </NestedAccordion>
+                        </Accordion>
+
+                        <Accordion 
+                            title="تحميل فيديوهات من وسائل التواصل" 
+                            isOpen={openAccordion === "video_downloaders"} 
+                            onToggle={() => handleToggle("video_downloaders")}
+                        >
+                            <div className="flex flex-col rounded-lg overflow-hidden border mb-4">
+                                <RecommendationLink 
+                                    href="https://ssyoutube.is/en1/"
+                                    icon="download"
+                                    title="ssYouTube (YouTube)"
+                                />
+                                <RecommendationLink 
+                                    href="https://cobalt.tools/"
+                                    icon="download"
+                                    title="Cobalt.tools (Facebook)"
+                                />
+                                <RecommendationLink 
+                                    href="https://snapinsta.to/en2"
+                                    icon="download"
+                                    title="Snapinsta (Instagram)"
+                                />
+                                <RecommendationLink 
+                                    href="https://twittervideodownloader.com/en/"
+                                    icon="download"
+                                    title="Twitter Video Downloader (Twitter/X)"
+                                />
+                                <RecommendationLink 
+                                    href="https://taplio.com/linkedin-video-downloader"
+                                    icon="download"
+                                    title="Taplio (LinkedIn)"
+                                />
+                                <RecommendationLink 
+                                    href="https://klickpin.com/"
+                                    icon="download"
+                                    title="Klickpin (Pinterest)"
+                                />
+                            </div>
+
+                            <NestedAccordion
+                                title="إضافة للمتصفح لتحميل الفيديوهات"
+                                icon="puzzle"
+                                isOpen={openNestedAccordion === "video_downloader_ext"}
+                                onToggle={() => handleNestedToggle("video_downloader_ext")}
+                            >
+                                <div className="flex flex-col rounded-lg overflow-hidden border">
+                                    <RecommendationLink 
+                                        href="https://chromewebstore.google.com/detail/video-downloader-global-v/olafhgbhkkgkbbonieapkchffalihpic"
+                                        icon="puzzle"
+                                        title="Video Downloader Global"
+                                        description="إضافة للمتصفح لتحميل الفيديوهات من أي موقع بسهولة."
+                                    />
+                                </div>
+                            </NestedAccordion>
                         </Accordion>
                     </div>
                     
