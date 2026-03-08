@@ -659,8 +659,12 @@
             },
             { 
                 title: "الأسبوع 7: المساعد الشخصي", 
-                lectures: [], 
-                guides: [] 
+                lectures: [
+                    { title: "محاضرة الأسبوع السابع", url: "https://t.me/c/3692158422/5/732" }
+                ], 
+                guides: [
+                    { title: "مرفقات الأسبوع السابع", url: "https://drive.google.com/drive/folders/1-GOgII85pd2nWJZWF50Gz90k0jrxQpI9?usp=sharing" }
+                ] 
             },
             { 
                 title: "الأسبوع 8: مشاريع عملية", 
@@ -676,7 +680,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 5; // Week 6 unlocked
+            const CURRENT_WEEK_INDEX = 6; // Week 7 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -936,7 +940,26 @@
                 ],
                 note: "ضروري: التجربة؛ تجربة أكتر، استفادة ومتعة وتمكن أكتر وأكتر"
             },
-            { title: "تاسكات الأسبوع 7", deadline: "قريباً", tasks: [] },
+            { 
+                title: "تاسكات الأسبوع 7", 
+                deadline: "15 مارس 2026", 
+                tasks: [
+                    {
+                        text: "عمل مساعد شخصي واحد علي الأقل لمساعدتك في حاجة بتحتاجها بشكل دوري (ممكن تختار حاجة من دول لو محتار):",
+                        subItems: [
+                            "كتابة محتوي أو اسكريبتات",
+                            "تعلم لغة",
+                            "كتابة تقارير خاصة بشغلك أو تحضير دورس (لو مدرس)",
+                            "تحليل بيانات",
+                            "إدارة مالية",
+                            "مدرب جيم مثلا أو مساعد خاص بالسعرات الحرارية والتغذية الصحية",
+                            "تعلم مهارة أو مجال جديد",
+                            "مساعد خاص بزراعة نباتات أو تربية عصافير"
+                        ]
+                    }
+                ],
+                note: "الأمثلة لا حصر ليها، محتاجاك بس تفكر انت بتحتاج الذكاء الاصطناعي في ايه بشكل دوري أو ايه المساعدين اللي ممكن يساعدوك في يومك، كأنك بتدير شركة وبتعين موظفين، المساعدين دول هم موظفين أذكياء قررت انك تعينهم عندك"
+            },
             { title: "تاسكات الأسبوع 8", deadline: "قريباً", tasks: [] },
             { title: "الأسبوع 9: مشروع التخرج", deadline: "قريباً", tasks: [], isFinal: true },
         ];
@@ -1043,7 +1066,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 5; // Week 6 unlocked
+            const CURRENT_WEEK_INDEX = 6; // Week 7 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
