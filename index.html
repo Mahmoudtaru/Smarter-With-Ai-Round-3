@@ -668,8 +668,12 @@
             },
             { 
                 title: "الأسبوع 8: مشاريع عملية", 
-                lectures: [], 
-                guides: [] 
+                lectures: [
+                    { title: "لايف الأسبوع الثامن", url: "https://t.me/c/3692158422/5/785" }
+                ], 
+                guides: [
+                    { title: "مرفقات اللايف", url: "https://drive.google.com/drive/folders/1nvPUPFmLQPC8fxvNXBVBi2xCudbzDSJU?usp=sharing" }
+                ] 
             },
             { 
                 title: "الأسبوع 9: مشروع التخرج", 
@@ -680,7 +684,7 @@
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 6; // Week 7 unlocked
+            const CURRENT_WEEK_INDEX = 7; // Week 8 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -1066,7 +1070,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 6; // Week 7 unlocked
+            const CURRENT_WEEK_INDEX = 7; // Week 8 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
