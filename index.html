@@ -600,6 +600,40 @@
         };
 
         // LecturesTab Component
+        const graduationProjectDetails = [
+            {
+                title: "المتطلبات الأساسية للمشروع (يعتمد بشكل أساسي على التطبيق العملي):",
+                items: [
+                    "مشاركة حالتي استخدام (Two Use Cases): يُطلب تطبيق الذكاء الاصطناعي في مجال العمل، الدراسة، أو الحياة الشخصية (حالتين على الأقل).",
+                    "بناء سير عمل مفيد (Useful Workflow): لا يُشترط عائد مادي، بل يكفي إثبات كيف ساعدك الذكاء الاصطناعي كـ «مساعد شخصي» في: توفير النفقات والأموال، تحسين جودة العمل ومستواه، وتوفير الوقت والمجهود."
+                ]
+            },
+            {
+                title: "لعب دور «سفير الذكاء الاصطناعي»:",
+                items: [
+                    "اللقاء المباشر (Live): سيتم عقد لقاء لمناقشة مشاريع التخرج، وعرض حالات الاستخدام للحصول على تقييم وتوجيهات (Feedback).",
+                    "المشاركة المجتمعية (خطوة اختيارية): يُفضل مشاركة مشروع التخرج مع الأصدقاء وزملاء العمل والمهتمين بمجالك، وشرح فكرة المشروع وكيف ساعدك عمليًا."
+                ]
+            },
+            {
+                title: "أمثلة تطبيقية مقترحة لتنفيذ المشروع:",
+                items: [
+                    "بناء مساحة عمل دراسية باستخدام NotebookLM: رفع محاضرات كورس (بعد تحويلها لمقاطع صوتية) وتوليد عروض تقديمية (Presentations) وإنفوجرافيك بضغطة زر.",
+                    "توحيد المصادر وتأليف كُتيب: تجميع مصادر وفيديوهات متفرقة حول موضوع واحد وصياغتها في «كتيب متكامل» بأسلوب وتنسيق منظم.",
+                    "التعامل مع الكتب والمراجع: رفع كتاب لاستخراج فصل معين وتحويله إلى نص، أو تلخيصه، أو ترجمته لتسهيل القراءة."
+                ]
+            },
+            {
+                title: "🎁 المكافأة الاستثنائية للدفعة الحالية (لمن ينهي المشروع خلال المهلة):",
+                items: [
+                    "تشجيعًا للمتدربين، تم الإعلان عن استثناء خاص لمن ينهي مشروع التخرج خلال المهلة المحددة (شهر تقريبًا)، حيث سيحصل على امتيازات Premium تشمل:",
+                    "الانضمام إلى مجتمع الكورس الممتد (بخصم كبير أو مجانًا).",
+                    "إتاحة الفرصة لحضور أي دفعات قادمة من الدبلومة مستقبلاً."
+                ]
+            }
+        ];
+        const graduationProjectNote = "تنويه: دي مجرد أمثلة، بس في الحقيقة احنا مهتمين أكتر نسمع استخداماتك وازاي الذكاء الاصطناعي قدر يساعدك في حياتك وشغلك ودراستك.";
+
         const lecturesData = [
             { 
                 title: "الأسبوع 1: مقدمة عن الذكاء الاصطناعي", 
@@ -669,22 +703,24 @@
             { 
                 title: "الأسبوع 8: مشاريع عملية", 
                 lectures: [
-                    { title: "لايف الأسبوع الثامن", url: "https://t.me/c/3692158422/5/785" }
+                    { title: "لايف الأسبوع الثامن", url: "https://t.me/c/3692158422/5/785" },
+                    { title: "محاضرة الأسبوع الثامن (الأخيرة)", url: "https://t.me/c/3692158422/5/795" }
                 ], 
                 guides: [
-                    { title: "مرفقات اللايف", url: "https://drive.google.com/drive/folders/1nvPUPFmLQPC8fxvNXBVBi2xCudbzDSJU?usp=sharing" }
+                    { title: "مرفقات اللايف", url: "https://drive.google.com/drive/folders/1nvPUPFmLQPC8fxvNXBVBi2xCudbzDSJU?usp=sharing" },
+                    { title: "مرفقات المحاضرة", url: "https://drive.google.com/drive/folders/1prAWM0FDzKckUy_vvk3bbKhz7jTbVDLr?usp=sharing" }
                 ] 
             },
             { 
                 title: "الأسبوع 9: مشروع التخرج", 
-                lectures: [], 
-                guides: [] 
+                projectDetails: graduationProjectDetails,
+                note: graduationProjectNote
             },
         ];
 
         const LECTURE_COMPLETION_KEY = 'lectureCompletionStatusR3';
         const LecturesTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 7; // Week 8 unlocked
+            const CURRENT_WEEK_INDEX = 8; // Week 9 unlocked
             const [openWeek, setOpenWeek] = useState(lecturesData[CURRENT_WEEK_INDEX]?.title || null);
             const [isAvailabilityOpen, setAvailabilityOpen] = useState(false);
             const [completedLectures, setCompletedLectures] = useState(() => {
@@ -791,68 +827,94 @@
                                 >
                                     {!isLocked ? (
                                         <div className="space-y-6">
-                                            <div>
-                                                <h4 className="subsection-title flex items-center gap-2"><Icon name="play-circle" /> مشاهدة المحاضرات</h4>
-                                                {week.lectures && week.lectures.length > 0 ? (
-                                                    <ul className="space-y-2 mt-4">
-                                                        {week.lectures.map((lecture, index) => {
-                                                            const lectureKey = `${week.title}-${lecture.title}`;
-                                                            const isCompleted = !!completedLectures[lectureKey];
-                                                            return (
-                                                                <li key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
-                                                                    <input
-                                                                        type="checkbox"
-                                                                        id={`lecture-${week.title.replace(/\s/g, '-')}-${index}`}
-                                                                        checked={isCompleted}
-                                                                        onChange={() => handleToggleLecture(lectureKey)}
-                                                                        className="h-5 w-5 rounded border-gray-300 cursor-pointer flex-shrink-0"
-                                                                    />
-                                                                    <div className="flex-grow flex justify-between items-center flex-wrap gap-2">
-                                                                        <label
-                                                                            htmlFor={`lecture-${week.title.replace(/\s/g, '-')}-${index}`}
-                                                                            className={`text-lg cursor-pointer ${isCompleted ? 'line-through text-gray-500' : ''}`}
-                                                                        >
-                                                                            {lecture.title}
-                                                                        </label>
-                                                                        <a
-                                                                            href={lecture.url}
-                                                                            target="_blank"
-                                                                            rel="noopener noreferrer"
-                                                                            className="bg-[--accent-navy] text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all transform hover:scale-105 dark:bg-[--accent-green] dark:text-[--accent-navy] dark:font-semibold"
-                                                                            aria-label={`Open lecture for ${lecture.title}`}
-                                                                        >
-                                                                            <Icon name="play-circle" className="w-4 h-4" />
-                                                                            <span>مشاهدة</span>
-                                                                        </a>
-                                                                    </div>
-                                                                </li>
-                                                            );
-                                                        })}
-                                                    </ul>
-                                                ) : (
-                                                    <p className="text-gray-600 text-center p-4">المحاضرات ستكون متاحة قريباً بإذن الله.</p>
-                                                )}
-                                            </div>
-                                            
-                                            {!week.title.includes("مشروع التخرج") && (
-                                                <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
-                                                    <h4 className="subsection-title flex items-center gap-2"><Icon name="book-text" /> أدلة الأسبوع</h4>
-                                                    {week.guides && week.guides.length > 0 ? (
-                                                        <ul className="space-y-2 mt-4">
-                                                            {week.guides.map((guide, index) => (
-                                                                <li key={index}>
-                                                                    <a href={guide.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
-                                                                        <Icon name={guide.title.includes("دعوة") ? "gift" : "file-text"} className="w-5 h-5 text-[--accent-green] flex-shrink-0" />
-                                                                        <span className="flex-grow">{guide.title}</span>
-                                                                        <Icon name="external-link" className="w-5 h-5 text-gray-400" />
-                                                                    </a>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    ) : (
-                                                        <p className="text-gray-600 text-center p-4">الأدلة ستكون متاحة قريباً بإذن الله.</p>
+                                            {week.projectDetails ? (
+                                                <div className="bg-white dark:bg-slate-800 rounded-lg">
+                                                    <h4 className="subsection-title flex items-center gap-2 mb-4"><Icon name="award" /> تفاصيل مشروع التخرج</h4>
+                                                    <div className="space-y-5 px-2">
+                                                        {week.projectDetails.map((section, idx) => (
+                                                            <div key={idx}>
+                                                                <h5 className="font-bold text-lg text-[--accent-navy] dark:text-[--accent-green] mb-2">{section.title}</h5>
+                                                                <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                                                                    {section.items.map((item, i) => (
+                                                                        <li key={i} className="leading-relaxed">{item}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    {week.note && (
+                                                        <div className="mt-5 p-4 bg-red-50 dark:bg-red-900/20 border-r-4 border-red-500 rounded-lg text-red-700 dark:text-red-400 font-semibold flex items-start gap-3 shadow-sm">
+                                                            <Icon name="info" className="w-6 h-6 flex-shrink-0" />
+                                                            <p className="leading-relaxed">{week.note}</p>
+                                                        </div>
                                                     )}
                                                 </div>
+                                            ) : (
+                                                <>
+                                                    <div>
+                                                        <h4 className="subsection-title flex items-center gap-2"><Icon name="play-circle" /> مشاهدة المحاضرات</h4>
+                                                        {week.lectures && week.lectures.length > 0 ? (
+                                                            <ul className="space-y-2 mt-4">
+                                                                {week.lectures.map((lecture, index) => {
+                                                                    const lectureKey = `${week.title}-${lecture.title}`;
+                                                                    const isCompleted = !!completedLectures[lectureKey];
+                                                                    return (
+                                                                        <li key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+                                                                            <input
+                                                                                type="checkbox"
+                                                                                id={`lecture-${week.title.replace(/\s/g, '-')}-${index}`}
+                                                                                checked={isCompleted}
+                                                                                onChange={() => handleToggleLecture(lectureKey)}
+                                                                                className="h-5 w-5 rounded border-gray-300 cursor-pointer flex-shrink-0"
+                                                                            />
+                                                                            <div className="flex-grow flex justify-between items-center flex-wrap gap-2">
+                                                                                <label
+                                                                                    htmlFor={`lecture-${week.title.replace(/\s/g, '-')}-${index}`}
+                                                                                    className={`text-lg cursor-pointer ${isCompleted ? 'line-through text-gray-500' : ''}`}
+                                                                                >
+                                                                                    {lecture.title}
+                                                                                </label>
+                                                                                <a
+                                                                                    href={lecture.url}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                    className="bg-[--accent-navy] text-white text-sm px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all transform hover:scale-105 dark:bg-[--accent-green] dark:text-[--accent-navy] dark:font-semibold"
+                                                                                    aria-label={`Open lecture for ${lecture.title}`}
+                                                                                >
+                                                                                    <Icon name="play-circle" className="w-4 h-4" />
+                                                                                    <span>مشاهدة</span>
+                                                                                </a>
+                                                                            </div>
+                                                                        </li>
+                                                                    );
+                                                                })}
+                                                            </ul>
+                                                        ) : (
+                                                            <p className="text-gray-600 text-center p-4">المحاضرات ستكون متاحة قريباً بإذن الله.</p>
+                                                        )}
+                                                    </div>
+                                                    
+                                                    {!week.title.includes("مشروع التخرج") && (
+                                                        <div className="pt-6 border-t border-gray-200 dark:border-gray-700">
+                                                            <h4 className="subsection-title flex items-center gap-2"><Icon name="book-text" /> أدلة الأسبوع</h4>
+                                                            {week.guides && week.guides.length > 0 ? (
+                                                                <ul className="space-y-2 mt-4">
+                                                                    {week.guides.map((guide, index) => (
+                                                                        <li key={index}>
+                                                                            <a href={guide.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors w-full">
+                                                                                <Icon name={guide.title.includes("دعوة") ? "gift" : "file-text"} className="w-5 h-5 text-[--accent-green] flex-shrink-0" />
+                                                                                <span className="flex-grow">{guide.title}</span>
+                                                                                <Icon name="external-link" className="w-5 h-5 text-gray-400" />
+                                                                            </a>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            ) : (
+                                                                <p className="text-gray-600 text-center p-4">الأدلة ستكون متاحة قريباً بإذن الله.</p>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                </>
                                             )}
 
                                         </div>
@@ -965,7 +1027,18 @@
                 note: "الأمثلة لا حصر ليها، محتاجاك بس تفكر انت بتحتاج الذكاء الاصطناعي في ايه بشكل دوري أو ايه المساعدين اللي ممكن يساعدوك في يومك، كأنك بتدير شركة وبتعين موظفين، المساعدين دول هم موظفين أذكياء قررت انك تعينهم عندك"
             },
             { title: "تاسكات الأسبوع 8", deadline: "قريباً", tasks: [] },
-            { title: "الأسبوع 9: مشروع التخرج", deadline: "قريباً", tasks: [], isFinal: true },
+            { 
+                title: "الأسبوع 9: مشروع التخرج", 
+                deadline: "15 أبريل 2026", 
+                tasks: [
+                    {
+                        text: "تأكيد إنجاز وتسليم مشروع التخرج بالكامل",
+                        details: graduationProjectDetails
+                    }
+                ],
+                note: graduationProjectNote,
+                isFinal: true 
+            },
         ];
 
         const TASK_COMPLETION_KEY = 'taskCompletionStatusR3';
@@ -1036,6 +1109,20 @@
                                                 ))}
                                             </ul>
                                         )}
+                                        {!isString && taskObj.details && (
+                                            <div className={`pr-10 mt-2 space-y-5 ${isCompleted ? 'opacity-70' : ''}`}>
+                                                {taskObj.details.map((section, idx) => (
+                                                    <div key={idx}>
+                                                        <h5 className={`font-bold text-gray-800 dark:text-gray-200 mb-2 ${isCompleted ? 'line-through' : ''}`}>{section.title}</h5>
+                                                        <ul className={`list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400 ${isCompleted ? 'line-through' : ''}`}>
+                                                            {section.items.map((item, i) => (
+                                                                <li key={i} className="leading-relaxed">{item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
                                     </li>
                                 )
                             })}
@@ -1045,7 +1132,7 @@
                     )}
 
                     {item.note && (
-                        <div className="mt-5 p-4 bg-red-50 border-r-4 border-red-500 rounded-lg text-red-700 font-semibold flex items-start gap-3 shadow-sm">
+                        <div className="mt-5 p-4 bg-red-50 dark:bg-red-900/20 border-r-4 border-red-500 rounded-lg text-red-700 dark:text-red-400 font-semibold flex items-start gap-3 shadow-sm">
                             <Icon name="info" className="w-6 h-6 flex-shrink-0" />
                             <p className="leading-relaxed">{item.note}</p>
                         </div>
@@ -1070,7 +1157,7 @@
         };
 
         const TasksTab = ({ setModalMessage }) => {
-            const CURRENT_WEEK_INDEX = 7; // Week 8 unlocked
+            const CURRENT_WEEK_INDEX = 8; // Week 9 unlocked
             const [completedTasks, setCompletedTasks] = useState(() => {
                 try {
                     const saved = localStorage.getItem(TASK_COMPLETION_KEY);
